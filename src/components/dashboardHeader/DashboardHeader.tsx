@@ -7,10 +7,10 @@ import Image from "next/image";
 
 const DashboardHeader = () => {
   return (
-    <div className="flex justify-between align-center space-x-1 flex-wrap w-full">
-      <p className="text-3xl font-black uppercase">Dashboard</p>
+    <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-stretch w-full">
+      <p className="text-3xl font-black uppercase mb-4 lg:mb-0">Dashboard</p>
 
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center mb-4 lg:mb-0">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             className="w-3 h-3 text-gray-500 dark:text-gray-900"
@@ -21,9 +21,9 @@ const DashboardHeader = () => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
             />
           </svg>
@@ -31,7 +31,7 @@ const DashboardHeader = () => {
         <input
           type="search"
           id="default-search"
-          className="pl-10 pr-3 py-2 rounded-full text-xs"
+          className="pl-10 pr-3 py-2 rounded-full text-xs w-full lg:w-auto"
           placeholder="Search Dashboard"
         />
       </div>
