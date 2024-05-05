@@ -11,7 +11,7 @@ import YourTransacrtions from "../yourTransactions/YourTransacrtions";
 
 const Main = () => {
   return (
-    <div className=" w-10/12">
+    <div>
       <p className=" text-xs text-slate-300">Dashboard / Overview</p>
       <div className="flex items-center justify-between space-x-5 flex-wrap">
         <ProftLoss />

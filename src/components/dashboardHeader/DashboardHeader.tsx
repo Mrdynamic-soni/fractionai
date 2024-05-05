@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const DashboardHeader = () => {
   return (
-    <div className="flex justify-between align-center space-x-1 w-10/12 flex-wrap">
+    <div className="flex justify-between align-center space-x-1 flex-wrap w-full">
       <p className="text-3xl font-black uppercase">Dashboard</p>
 
       <div className="relative flex items-center justify-center">

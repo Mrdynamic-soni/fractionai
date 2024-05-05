@@ -14,9 +14,16 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import MenuOption from "../menuOption/MenuOption";
+import { FaBars } from 'react-icons/fa';
+
 
 const LeftNavbar = () => {
   const [activeMenu, setActiveMenu] = useState<Number>(0);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   const TopMenuOptions = [
     {
@@ -88,7 +95,14 @@ const LeftNavbar = () => {
     },
   ];
   return (
-    <div className="p-5 bg-slate-50 w-1/8  fixed  flex flex-col justify-between " style={{height:'100vh'}} >
+    <div>
+      {/* Hamburger icon/button */}
+      <div className="sm:hidden fixed top-5 left-5 z-50">
+        <button onClick={toggleMenu} className="block text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
+        <FaBars size={24} />
+        </button>
+      </div>
+    <div className={`p-5 bg-slate-50 w-1/5 fixed flex flex-col justify-between ${showMenu ? 'block' : 'hidden'} sm:flex`} style={{ height: '100vh', top: 0, left: showMenu ? 0 : '-20rem', transition: 'left 0.3s ease' }}>
      <div>
      <div>
         <Image src={AURORA} width={180} height={100} alt="Aurora" />
@@ -136,6 +150,7 @@ const LeftNavbar = () => {
         </p>
         <p className="font-normal text-xs text-slate-400">Expire in 09/2023</p>
       </div>
+    </div>
     </div>
   );
 };
