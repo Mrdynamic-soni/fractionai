@@ -1,17 +1,28 @@
-"use client"
-
-
 import { theme } from "@/util/theme";
 import React from "react";
 
-const TertiaryButton = ({ buttonText, onPress, leftIcon, rightIcon }) => {
+interface PrimaryButtonProps {
+  buttonText: string;
+  onPress: () => void;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+}
+
+const TertiaryButton: React.FC<PrimaryButtonProps> = ({
+  buttonText,
+  onPress,
+  leftIcon,
+  rightIcon,
+}) => {
   return (
-    <button className="flex justify-center items-center space-x-2 px-5 py-2 "  onClick={onPress}>
-      {leftIcon}
-      <p className="text-slate-600 text-xs">
-      {buttonText}
-      </p>
-      {rightIcon}
+    <button
+      className="flex justify-center items-center space-x-2 px-5 py-2 rounded-full"
+      style={{ backgroundColor: theme.surface.primary }}
+      onClick={onPress}
+    >
+      {leftIcon && <span className="icon">{leftIcon}</span>}
+      <p className="text-white text-xs">{buttonText}</p>
+      {rightIcon && <span className="icon">{rightIcon}</span>}
     </button>
   );
 };
