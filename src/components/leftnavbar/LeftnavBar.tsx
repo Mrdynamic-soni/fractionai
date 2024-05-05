@@ -1,7 +1,7 @@
 "use client";
 
 import {
-    ACCOUNTING,
+  ACCOUNTING,
   AURORA,
   BANKING,
   DASHBOARD,
@@ -14,16 +14,11 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import MenuOption from "../menuOption/MenuOption";
-import { FaBars } from 'react-icons/fa';
-
+import useDeviceType from "@/hooks/useDeviceType";
 
 const LeftNavbar = () => {
+  const deviceType = useDeviceType();
   const [activeMenu, setActiveMenu] = useState<Number>(0);
-  const [showMenu, setShowMenu] = useState(false);
-
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
 
   const TopMenuOptions = [
     {
@@ -66,7 +61,7 @@ const LeftNavbar = () => {
       label: "Sales",
       icon: SALES,
       onPres: () => {
-        setActiveMenu(4)
+        setActiveMenu(4);
       },
     },
     {
@@ -74,7 +69,7 @@ const LeftNavbar = () => {
       label: "Purchase",
       icon: PURCHASE,
       onPres: () => {
-        setActiveMenu(5)
+        setActiveMenu(5);
       },
     },
     {
@@ -82,7 +77,7 @@ const LeftNavbar = () => {
       label: "Accounting",
       icon: ACCOUNTING,
       onPres: () => {
-        setActiveMenu(6)
+        setActiveMenu(6);
       },
     },
     {
@@ -90,67 +85,65 @@ const LeftNavbar = () => {
       label: "Banking",
       icon: BANKING,
       onPres: () => {
-        setActiveMenu(7)
+        setActiveMenu(7);
       },
     },
   ];
   return (
-    <div>
-      {/* Hamburger icon/button */}
-      <div className="sm:hidden fixed top-5 left-5 z-50">
-        <button onClick={toggleMenu} className="block text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
-        <FaBars size={24} />
-        </button>
-      </div>
-    <div className={`p-5 bg-slate-50 w-1/5 fixed flex flex-col justify-between ${showMenu ? 'block' : 'hidden'} sm:flex`} style={{ height: '100vh', top: 0, left: showMenu ? 0 : '-20rem', transition: 'left 0.3s ease' }}>
-     <div>
-     <div>
-        <Image src={AURORA} width={180} height={100} alt="Aurora" />
-      </div>
-      <div className="mt-12 " >
-        <p className="uppercase font-bold text-xs text-slate-400"> General</p>
-        <div className="pl-3">
-          {TopMenuOptions.map((item) => {
-            return (
-              <MenuOption
-                activeMenu={activeMenu == item?.id}
-                key={item?.id}
-                icon={item?.icon}
-                label={item?.label}
-                onPress={item?.onPres}
-                labelClass="font-semibold text-sm text-slate-900"
-                imageSize={30}
-              />
-            );
-          })}
+    <div
+      className={`p-5 bg-slate-50 ${deviceType==="lg"?"w-1/8":"w-2/12"}  fixed  flex flex-col justify-between `}
+      style={{ height: "100vh" }}
+    >
+      <div>
+        <div>
+          <Image src={AURORA} width={180} height={100} alt="Aurora" />
+        </div>
+        <div className="mt-12 ">
+          <p className="uppercase font-bold text-xs text-slate-400"> General</p>
+          <div className="pl-3">
+            {TopMenuOptions.map((item) => {
+              return (
+                <MenuOption
+                  activeMenu={activeMenu == item?.id}
+                  key={item?.id}
+                  icon={item?.icon}
+                  label={item?.label}
+                  onPress={item?.onPres}
+                  labelClass="font-semibold text-sm text-slate-900 "
+                  imageSize={30}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className="mt-5 " style={{ marginTop: "3rem" }}>
+          <p className="uppercase font-bold text-xs text-slate-400">
+            {" "}
+            management
+          </p>
+          <div className="pl-3">
+            {bottomMenuOptions.map((item) => {
+              return (
+                <MenuOption
+                  activeMenu={activeMenu == item?.id}
+                  key={item?.id}
+                  icon={item?.icon}
+                  label={item?.label}
+                  onPress={item?.onPres}
+                  labelClass="font-normal text-xs text-slate-400 "
+                  imageSize={15}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-      <div className="mt-5 " style={{marginTop:"3rem"}}>
-        <p className="uppercase font-bold text-xs text-slate-400"> management</p>
-        <div className="pl-3">
-          {bottomMenuOptions.map((item) => {
-            return (
-              <MenuOption
-                activeMenu={activeMenu == item?.id}
-                key={item?.id}
-                icon={item?.icon}
-                label={item?.label}
-                onPress={item?.onPres}
-                labelClass="font-normal text-xs text-slate-400"
-                imageSize={15}
-              />
-            );
-          })}
-        </div>
-      </div>
-     </div>
-      <div className="pl-3 mt-5 " >
-        <p className="font-normal text-xs text-slate-400">
+      <div className="pl-3 mt-5 ">
+        <p className="font-normal text-xs text-slate-400 sm:hidden">
           2023 © Lucas Marques
         </p>
         <p className="font-normal text-xs text-slate-400">Expire in 09/2023</p>
       </div>
-    </div>
     </div>
   );
 };
